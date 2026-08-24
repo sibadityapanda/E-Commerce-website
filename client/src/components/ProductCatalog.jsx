@@ -7,6 +7,7 @@ const ProductCatalog = () => {
   const [error, setError] = useState(null);
   const [showAll, setShowAll] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [sortBy, setSortBy] = useState('');
   const [toastMessage, setToastMessage] = useState('');
   const { addToCart } = useCart();
 
@@ -18,9 +19,15 @@ const ProductCatalog = () => {
 
   const categories = ['All', ...new Set(products.map(p => p.category).filter(Boolean))];
 
-  const filteredProducts = selectedCategory === 'All' 
+  let filteredProducts = selectedCategory === 'All' 
     ? products 
     : products.filter(p => p.category === selectedCategory);
+    
+  if (sortBy === 'price-asc') {
+    filteredProducts.sort((a, b) => a.price - b.price);
+  } else if (sortBy === 'price-desc') {
+    filteredProducts.sort((a, b) => b.price - a.price);
+  }
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -70,27 +77,46 @@ const ProductCatalog = () => {
           <span onClick={() => setShowAll(!showAll)} style={{ color: 'var(--accent-teal)', fontWeight: 600, cursor: 'pointer' }}>{showAll ? 'View Less ↑' : 'View All →'}</span>
         </div>
 
-        {/* Category Filters */}
-        <div style={{ display: 'flex', gap: '1rem', marginBottom: '3rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              style={{
-                padding: '0.5rem 1.5rem',
-                borderRadius: 'var(--radius-pill)',
-                border: '1px solid var(--border-color)',
-                background: selectedCategory === cat ? 'var(--accent-teal)' : 'transparent',
-                color: selectedCategory === cat ? '#fff' : 'var(--text-secondary)',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                whiteSpace: 'nowrap',
-                fontWeight: 600
-              }}
-            >
-              {cat}
-            </button>
-          ))}
+        {/* Category Filters and Sort */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem', flexWrap: 'wrap', gap: '1rem' }}>
+          <div style={{ display: 'flex', gap: '1rem', overflowX: 'auto', paddingBottom: '0.5rem', flexGrow: 1 }}>
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                style={{
+                  padding: '0.5rem 1.5rem',
+                  borderRadius: 'var(--radius-pill)',
+                  border: '1px solid var(--border-color)',
+                  background: selectedCategory === cat ? 'var(--accent-teal)' : 'transparent',
+                  color: selectedCategory === cat ? '#fff' : 'var(--text-secondary)',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  whiteSpace: 'nowrap',
+                  fontWeight: 600
+                }}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+          <select 
+            value={sortBy} 
+            onChange={(e) => setSortBy(e.target.value)}
+            style={{
+              padding: '0.5rem 1rem',
+              borderRadius: 'var(--radius-pill)',
+              border: '1px solid var(--border-color)',
+              background: 'var(--surface-color)',
+              color: 'var(--text-primary)',
+              outline: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            <option value="">Sort By: Default</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
         </div>
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '3rem' }}>
