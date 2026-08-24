@@ -62,7 +62,6 @@ button {
   box-shadow: var(--shadow-header);
 }
 
-/* Antigravity Card */
 .ag-card {
   background: var(--surface-color);
   border-radius: var(--radius-card);
@@ -70,11 +69,38 @@ button {
   transition: all var(--transition-smooth);
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.8);
+  position: relative;
+  z-index: 1;
+}
+
+.ag-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 60%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  transition: background-position 0.6s ease-out;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .ag-card:hover {
-  transform: translateY(-12px);
+  transform: translateY(-12px) scale(1.02);
   box-shadow: var(--shadow-float-hover);
+  border-color: var(--accent-teal);
+}
+
+.ag-card:hover::before {
+  background-position: -100% 0;
+}
+
+.ag-card img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ag-card:hover img {
+  transform: scale(1.1);
 }
 
 /* Buttons */
@@ -92,8 +118,8 @@ button {
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 77, 64, 0.15);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 77, 64, 0.25);
 }
 
 .btn-primary:active {
