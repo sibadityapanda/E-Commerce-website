@@ -100,6 +100,14 @@ const ProductCatalog = () => {
               </div>
               
               <div style={{ padding: '1.5rem 2rem 2.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1, background: 'var(--surface-color)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '0.5rem', gap: '0.2rem' }}>
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill={i < Math.floor(product.rating || 0) ? "#FFD700" : "#e0e0e0"} xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                    </svg>
+                  ))}
+                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginLeft: '0.5rem' }}>({product.numReviews || 0})</span>
+                </div>
                 <h4 style={{ fontSize: '1.25rem', margin: '0 0 0.5rem', color: 'var(--text-primary)', fontWeight: 700 }}>{product.name}</h4>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '2rem', flexGrow: 1, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                   {product.description}
