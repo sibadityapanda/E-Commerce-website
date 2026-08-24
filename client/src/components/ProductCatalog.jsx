@@ -7,7 +7,14 @@ const ProductCatalog = () => {
   const [error, setError] = useState(null);
   const [showAll, setShowAll] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [toastMessage, setToastMessage] = useState('');
   const { addToCart } = useCart();
+
+  const handleAddToCart = (product) => {
+    addToCart(product, 1);
+    setToastMessage(`Added ${product.name} to cart!`);
+    setTimeout(() => setToastMessage(''), 3000);
+  };
 
   const categories = ['All', ...new Set(products.map(p => p.category).filter(Boolean))];
 
@@ -119,7 +126,7 @@ const ProductCatalog = () => {
                   </span>
                   
                   <button
-                    onClick={() => addToCart(product, 1)}
+                    onClick={() => handleAddToCart(product)}
                     className="btn-primary"
                     disabled={product.countInStock === 0}
                     style={{ padding: '0.6rem 1.2rem', fontSize: '0.9rem' }}
@@ -132,6 +139,25 @@ const ProductCatalog = () => {
           ))}
         </div>
       </section>
+
+      {/* Toast Notification */}
+      {toastMessage && (
+        <div style={{
+          position: 'fixed', bottom: '2rem', right: '2rem',
+          background: 'var(--accent-teal)', color: '#fff',
+          padding: '1rem 2rem', borderRadius: 'var(--radius-pill)',
+          boxShadow: '0 10px 30px rgba(0,0,0,0.2)', zIndex: 1000,
+          animation: 'slideUp 0.3s ease-out'
+        }}>
+          {toastMessage}
+          <style>{`
+            @keyframes slideUp {
+              from { transform: translateY(100px); opacity: 0; }
+              to { transform: translateY(0); opacity: 1; }
+            }
+          `}</style>
+        </div>
+      )}
     </div>
   );
 };
