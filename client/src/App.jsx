@@ -92,9 +92,35 @@ function App() {
         </Routes>
       </main>
       
-      <footer style={{ padding: '4rem 0 2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>
+      <footer style={{ background: 'var(--surface-color)', padding: '4rem 0 2rem', borderTop: '1px solid var(--border-color)' }}>
         <div className="container">
-          <p style={{ fontSize: '0.9rem' }}>© 2026 AeroLogic Dynamics. All rights reserved.</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3rem', marginBottom: '3rem' }}>
+            <div>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>AeroLogic Dynamics</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                Engineering the future of technology with premium components, drones, and professional equipment.
+              </p>
+            </div>
+            <div>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>Quick Links</h3>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 2 }}>
+                <li><Link to="/">Shop</Link></li>
+                <li><Link to="/cart">Cart</Link></li>
+                <li><Link to="/login">My Account</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>Newsletter</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '1rem' }}>Subscribe for the latest tech updates and exclusive offers.</p>
+              <form onSubmit={(e) => { e.preventDefault(); alert('Subscribed successfully!'); }} style={{ display: 'flex', gap: '0.5rem' }}>
+                <input type="email" placeholder="Your email address" required style={{ flexGrow: 1, padding: '0.75rem', borderRadius: 'var(--radius-pill)', border: '1px solid var(--border-color)', background: 'var(--bg-color)', color: 'var(--text-primary)', outline: 'none' }} />
+                <button type="submit" className="btn-primary" style={{ padding: '0.75rem 1.5rem' }}>Subscribe</button>
+              </form>
+            </div>
+          </div>
+          <div style={{ textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.85rem', borderTop: '1px solid var(--border-color)', paddingTop: '2rem' }}>
+            <p>© 2026 AeroLogic Dynamics. All rights reserved.</p>
+          </div>
         </div>
       </footer>
     </Router>
