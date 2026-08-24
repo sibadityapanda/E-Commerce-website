@@ -9,6 +9,7 @@ const ProductCatalog = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState('');
   const [toastMessage, setToastMessage] = useState('');
+  const [quickViewProduct, setQuickViewProduct] = useState(null);
   const { addToCart } = useCart();
 
   const handleAddToCart = (product) => {
@@ -128,8 +129,23 @@ const ProductCatalog = () => {
                 </div>
               )}
               
-              <div style={{ padding: '2.5rem 2.5rem 1rem', background: 'linear-gradient(to bottom, #ffffff, #fafafa)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <div style={{ padding: '2.5rem 2.5rem 1rem', background: 'linear-gradient(to bottom, #ffffff, #fafafa)', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}
+                   onMouseOver={(e) => { const btn = e.currentTarget.querySelector('.quick-view-btn'); if(btn) btn.style.opacity = '1'; }}
+                   onMouseOut={(e) => { const btn = e.currentTarget.querySelector('.quick-view-btn'); if(btn) btn.style.opacity = '0'; }}>
                 <img src={product.image} alt={product.name} style={{ width: '100%', height: '220px', objectFit: 'contain', filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.1))' }} />
+                <button
+                  className="quick-view-btn"
+                  onClick={() => setQuickViewProduct(product)}
+                  style={{
+                    position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+                    background: 'rgba(255,255,255,0.9)', color: 'var(--text-primary)', border: 'none',
+                    padding: '0.6rem 1.2rem', borderRadius: 'var(--radius-pill)', fontWeight: 600,
+                    cursor: 'pointer', opacity: 0, transition: 'opacity 0.3s ease',
+                    boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+                  }}
+                >
+                  Quick View
+                </button>
               </div>
               
               <div style={{ padding: '1.5rem 2rem 2.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1, background: 'var(--surface-color)' }}>
@@ -184,6 +200,43 @@ const ProductCatalog = () => {
           `}</style>
         </div>
       )}
+      {/* Quick View Modal */}
+      {quickViewProduct && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
+          background: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex',
+          justifyContent: 'center', alignItems: 'center', padding: '1rem',
+          backdropFilter: 'blur(4px)'
+        }} onClick={() => setQuickViewProduct(null)}>
+          <div style={{
+            background: 'var(--surface-color)', padding: '2rem', borderRadius: 'var(--radius-card)',
+            maxWidth: '800px', width: '100%', display: 'flex', gap: '2rem', position: 'relative',
+            maxHeight: '90vh', overflowY: 'auto'
+          }} onClick={e => e.stopPropagation()}>
+            <button onClick={() => setQuickViewProduct(null)} style={{
+              position: 'absolute', top: '1rem', right: '1rem', background: 'transparent',
+              border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-primary)'
+            }}>×</button>
+            <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#f5f5f5', borderRadius: '1rem', padding: '2rem' }}>
+              <img src={quickViewProduct.image} alt={quickViewProduct.name} style={{ width: '100%', maxHeight: '300px', objectFit: 'contain' }} />
+            </div>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+              <h3 style={{ fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>{quickViewProduct.name}</h3>
+              <p style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--accent-teal)', marginBottom: '1rem' }}>${quickViewProduct.price.toFixed(2)}</p>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '2rem', flexGrow: 1 }}>{quickViewProduct.description}</p>
+              <button
+                onClick={() => { handleAddToCart(quickViewProduct); setQuickViewProduct(null); }}
+                className="btn-primary"
+                disabled={quickViewProduct.countInStock === 0}
+                style={{ width: '100%', padding: '1rem' }}
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
