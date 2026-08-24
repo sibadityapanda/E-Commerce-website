@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import ProductCatalog from './components/ProductCatalog';
 import ShoppingCart from './components/ShoppingCart';
@@ -22,7 +22,16 @@ const Success = () => (
 );
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const { cartItems } = useCart();
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
+    }
+  }, [isDarkMode]);
   const cartItemCount = cartItems.reduce((acc, item) => acc + item.qty, 0);
 
   // Parse user info safely
@@ -45,6 +54,13 @@ function App() {
               <h1 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 700, letterSpacing: '-0.5px' }}>AeroLogic Dynamics</h1>
             </Link>
             <nav style={{ display: 'flex', gap: '2.5rem', alignItems: 'center', fontWeight: 500, fontSize: '0.95rem' }}>
+              <button 
+                onClick={() => setIsDarkMode(!isDarkMode)} 
+                style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem', color: 'var(--text-secondary)' }}
+                title="Toggle Dark Mode"
+              >
+                {isDarkMode ? '☀️' : '🌙'}
+              </button>
               <Link to="/" style={{ transition: 'color 0.2s', color: 'var(--text-secondary)' }} onMouseOver={e => e.target.style.color = 'var(--accent-teal)'} onMouseOut={e => e.target.style.color = 'var(--text-secondary)'}>Shop</Link>
               <Link to="/cart" style={{ position: 'relative', transition: 'color 0.2s', color: 'var(--text-secondary)' }} onMouseOver={e => e.target.style.color = 'var(--accent-teal)'} onMouseOut={e => e.target.style.color = 'var(--text-secondary)'}>
                 Cart
