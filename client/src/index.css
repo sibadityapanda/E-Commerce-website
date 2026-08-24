@@ -1,0 +1,120 @@
+:root {
+  /* Colors */
+  --bg-color: #fcfbf9;
+  --surface-color: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --accent-teal: #004d40;
+  --border-color: #eaeaea;
+  
+  /* Typography */
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* Shadows for Antigravity */
+  --shadow-float: 0 20px 40px rgba(0, 0, 0, 0.04);
+  --shadow-float-hover: 0 30px 60px rgba(0, 0, 0, 0.08);
+  --shadow-header: 0 4px 20px rgba(0, 0, 0, 0.03);
+
+  /* Radius */
+  --radius-card: 20px;
+  --radius-pill: 30px;
+
+  /* Transitions */
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-body);
+  font-weight: 600;
+}
+
+/* Glassmorphism Utilities */
+.glass-header {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-header);
+}
+
+/* Antigravity Card */
+.ag-card {
+  background: var(--surface-color);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-float);
+  transition: all var(--transition-smooth);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.8);
+}
+
+.ag-card:hover {
+  transform: translateY(-12px);
+  box-shadow: var(--shadow-float-hover);
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--accent-teal);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 0.85rem 2rem;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  display: inline-block;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 77, 64, 0.15);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  background: #cbd5e1;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
