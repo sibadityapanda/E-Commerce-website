@@ -67,13 +67,29 @@ const importData = async () => {
     const sampleProducts = products.map((product) => {
       const name = product.name.toLowerCase();
       let imageUrl = '/images/drone.png';
-      if (name.includes('multimeter')) imageUrl = '/images/multimeter.png';
-      else if (name.includes('analyzer') || name.includes('oscilloscope') || name.includes('generator')) imageUrl = '/images/oscilloscope.png';
-      else if (name.includes('fpga') || name.includes('raspberry') || name.includes('arduino') || name.includes('teensy') || name.includes('esp32') || name.includes('module') || name.includes('breadboard')) imageUrl = '/images/fpga.png';
-      else if (name.includes('soldering')) imageUrl = '/images/soldering_iron.png';
-      else if (name.includes('radio') || name.includes('sdr') || name.includes('tango') || name.includes('expresslrs') || name.includes('goggles') || name.includes('vista')) imageUrl = '/images/radio.png';
+      let category = 'Drones';
+
+      if (name.includes('multimeter') || name.includes('soldering') || name.includes('power supply')) {
+        imageUrl = name.includes('multimeter') ? '/images/multimeter.png' : '/images/soldering_iron.png';
+        category = 'Accessories';
+      }
+      else if (name.includes('analyzer') || name.includes('oscilloscope') || name.includes('generator')) {
+        imageUrl = '/images/oscilloscope.png';
+        category = 'Testing Equipment';
+      }
+      else if (name.includes('fpga') || name.includes('raspberry') || name.includes('arduino') || name.includes('teensy') || name.includes('esp32') || name.includes('module') || name.includes('breadboard')) {
+        imageUrl = '/images/fpga.png';
+        category = 'Components';
+      }
+      else if (name.includes('radio') || name.includes('sdr') || name.includes('tango') || name.includes('expresslrs') || name.includes('goggles') || name.includes('vista')) {
+        imageUrl = '/images/radio.png';
+        category = 'Communication';
+      }
       
-      return { ...product, image: imageUrl, user: adminId };
+      const rating = (Math.random() * (5.0 - 3.5) + 3.5).toFixed(1);
+      const numReviews = Math.floor(Math.random() * 100) + 1;
+
+      return { ...product, image: imageUrl, category, rating: parseFloat(rating), numReviews, user: adminId };
     });
 
     await Product.insertMany(sampleProducts);

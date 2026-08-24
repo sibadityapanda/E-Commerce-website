@@ -6,7 +6,14 @@ const ProductCatalog = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showAll, setShowAll] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('All');
   const { addToCart } = useCart();
+
+  const categories = ['All', ...new Set(products.map(p => p.category).filter(Boolean))];
+
+  const filteredProducts = selectedCategory === 'All' 
+    ? products 
+    : products.filter(p => p.category === selectedCategory);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -40,21 +47,47 @@ const ProductCatalog = () => {
           <p style={{ color: 'var(--text-secondary)', fontSize: '1.25rem', marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem' }}>
             AeroLogic Dynamics delivers high-end FPV drones, logic analyzers, and premium tech components directly to professionals and enthusiasts.
           </p>
-          <button className="btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }} onClick={() => window.scrollTo({top: 600, behavior: 'smooth'})}>
+          <button className="btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }} onClick={() => {
+              const shopSection = document.getElementById('shop');
+              if(shopSection) shopSection.scrollIntoView({ behavior: 'smooth' });
+            }}>
             Shop Now
           </button>
         </div>
       </section>
 
       {/* Featured 3x2 Grid */}
-      <section className="container" style={{ padding: '2rem 2rem 6rem' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem' }}>
+      <section className="container" id="shop" style={{ padding: '2rem 2rem 6rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2rem' }}>
           <h3 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)' }}>{showAll ? 'All Products' : 'Featured Products'}</h3>
           <span onClick={() => setShowAll(!showAll)} style={{ color: 'var(--accent-teal)', fontWeight: 600, cursor: 'pointer' }}>{showAll ? 'View Less ↑' : 'View All →'}</span>
         </div>
+
+        {/* Category Filters */}
+        <div style={{ display: 'flex', gap: '1rem', marginBottom: '3rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
+          {categories.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              style={{
+                padding: '0.5rem 1.5rem',
+                borderRadius: 'var(--radius-pill)',
+                border: '1px solid var(--border-color)',
+                background: selectedCategory === cat ? 'var(--accent-teal)' : 'transparent',
+                color: selectedCategory === cat ? '#fff' : 'var(--text-secondary)',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                whiteSpace: 'nowrap',
+                fontWeight: 600
+              }}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '3rem' }}>
-          {(showAll ? products : products.slice(0, 6)).map((product) => (
+          {(showAll ? filteredProducts : filteredProducts.slice(0, 6)).map((product) => (
             <div key={product._id} className="ag-card" style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
               {product.countInStock === 0 && (
                 <div style={{ position: 'absolute', top: '1.5rem', left: '1.5rem', background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(4px)', padding: '0.5rem 1rem', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', color: '#ff4d4f', zIndex: 1, borderRadius: 'var(--radius-pill)', boxShadow: 'var(--shadow-header)' }}>
