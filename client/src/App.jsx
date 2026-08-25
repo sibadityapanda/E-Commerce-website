@@ -46,7 +46,7 @@ function App() {
   const userInfo = getUserInfo();
 
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL}>
       <div style={{ padding: '1.5rem 0 0 0', position: 'sticky', top: 0, zIndex: 100 }}>
         <header className="glass-header" style={{ margin: '0 auto', maxWidth: '1160px', borderRadius: 'var(--radius-pill)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '70px', padding: '0 2rem' }}>
