@@ -12,7 +12,7 @@ const CheckoutButton = () => {
     if (cartItems.length === 0) return;
     setLoading(true);
     try {
-      const response = await fetch('/api/payment/create-checkout-session', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/payment/create-checkout-session`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
