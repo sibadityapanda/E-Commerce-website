@@ -6,6 +6,7 @@
   --text-secondary: #666666;
   --accent-teal: #004d40;
   --border-color: #eaeaea;
+  --glass-bg: rgba(255, 255, 255, 0.85);
   
   /* Typography */
   --font-body: 'Inter', system-ui, sans-serif;
@@ -30,6 +31,7 @@ body.dark-theme {
   --text-secondary: #aaaaaa;
   --accent-teal: #26a69a;
   --border-color: #333333;
+  --glass-bg: rgba(30, 30, 30, 0.85);
   --shadow-float: 0 20px 40px rgba(0, 0, 0, 0.4);
   --shadow-float-hover: 0 30px 60px rgba(0, 0, 0, 0.6);
   --shadow-header: 0 4px 20px rgba(0, 0, 0, 0.5);
@@ -68,7 +70,7 @@ button {
 
 /* Glassmorphism Utilities */
 .glass-header {
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: var(--shadow-header);
