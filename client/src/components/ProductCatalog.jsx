@@ -132,7 +132,7 @@ const ProductCatalog = () => {
               <div style={{ padding: '2.5rem 2.5rem 1rem', background: 'linear-gradient(to bottom, #ffffff, #fafafa)', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}
                    onMouseOver={(e) => { const btn = e.currentTarget.querySelector('.quick-view-btn'); if(btn) btn.style.opacity = '1'; }}
                    onMouseOut={(e) => { const btn = e.currentTarget.querySelector('.quick-view-btn'); if(btn) btn.style.opacity = '0'; }}>
-                <img src={product.image} alt={product.name} style={{ width: '100%', height: '220px', objectFit: 'contain', filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.1))' }} />
+                <img src={product.image?.startsWith('/') ? `${import.meta.env.BASE_URL}${product.image.slice(1)}` : product.image} alt={product.name} style={{ width: '100%', height: '220px', objectFit: 'contain', filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.1))' }} />
                 <button
                   className="quick-view-btn"
                   onClick={() => setQuickViewProduct(product)}
@@ -218,7 +218,7 @@ const ProductCatalog = () => {
               border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-primary)'
             }}>×</button>
             <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#f5f5f5', borderRadius: '1rem', padding: '2rem' }}>
-              <img src={quickViewProduct.image} alt={quickViewProduct.name} style={{ width: '100%', maxHeight: '300px', objectFit: 'contain' }} />
+              <img src={quickViewProduct.image?.startsWith('/') ? `${import.meta.env.BASE_URL}${quickViewProduct.image.slice(1)}` : quickViewProduct.image} alt={quickViewProduct.name} style={{ width: '100%', maxHeight: '300px', objectFit: 'contain' }} />
             </div>
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
               <h3 style={{ fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: '1rem' }}>{quickViewProduct.name}</h3>

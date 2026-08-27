@@ -30,7 +30,7 @@ const ShoppingCart = () => {
             {cartItems.map((item) => (
               <div key={item._id} className="ag-card" style={{ display: 'flex', padding: '1.5rem', gap: '2rem', alignItems: 'center' }}>
                 <div style={{ background: 'var(--bg-color)', width: '120px', height: '120px', borderRadius: '15px', padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src={item.image} alt={item.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                  <img src={item.image?.startsWith('/') ? `${import.meta.env.BASE_URL}${item.image.slice(1)}` : item.image} alt={item.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
                 </div>
                 
                 <div style={{ flex: 1 }}>
