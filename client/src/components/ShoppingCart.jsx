@@ -47,7 +47,7 @@ const ShoppingCart = () => {
                         style={{ padding: '0.4rem 0', border: 'none', background: 'transparent', outline: 'none', cursor: 'pointer', fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.95rem' }}
                       >
                         {[...Array(item.countInStock || 10).keys()].map((x) => (
-                          <option key={x + 1} value={x + 1}>
+                          <option key={x + 1} value={x + 1} style={{ background: 'var(--bg-color)', color: 'var(--text-primary)' }}>
                             Qty: {x + 1}
                           </option>
                         ))}

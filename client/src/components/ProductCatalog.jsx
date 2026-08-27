@@ -114,9 +114,9 @@ const ProductCatalog = () => {
               cursor: 'pointer'
             }}
           >
-            <option value="">Sort By: Default</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
+            <option value="" style={{ background: 'var(--bg-color)', color: 'var(--text-primary)' }}>Sort By: Default</option>
+            <option value="price-asc" style={{ background: 'var(--bg-color)', color: 'var(--text-primary)' }}>Price: Low to High</option>
+            <option value="price-desc" style={{ background: 'var(--bg-color)', color: 'var(--text-primary)' }}>Price: High to Low</option>
           </select>
         </div>
         
