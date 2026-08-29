@@ -24,11 +24,11 @@ const ShoppingCart = () => {
           </Link>
         </div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: '3rem', alignItems: 'start' }}>
+        <div className="cart-grid">
           {/* Cart Items List */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             {cartItems.map((item) => (
-              <div key={item._id} className="ag-card" style={{ display: 'flex', padding: '1.5rem', gap: '2rem', alignItems: 'center' }}>
+              <div key={item._id} className="ag-card cart-item-layout">
                 <div style={{ background: 'var(--bg-color)', width: '120px', height: '120px', borderRadius: '15px', padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <img src={item.image?.startsWith('/') ? `${import.meta.env.BASE_URL}${item.image.slice(1)}` : item.image} alt={item.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
                 </div>
