@@ -11,7 +11,7 @@ import { useCart } from './context/CartContext';
 const Success = () => (
   <div className="container" style={{ display: 'flex', justifyContent: 'center', padding: '8rem 0' }}>
     <div className="ag-card" style={{ padding: '4rem 3rem', textAlign: 'center', maxWidth: '600px', width: '100%' }}>
-      <div style={{ width: '80px', height: '80px', background: '#e0f2f1', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 2rem', color: 'var(--accent-teal)', fontSize: '2.5rem' }}>
+      <div className="success-icon-bg" style={{ width: '80px', height: '80px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 2rem', color: 'var(--accent-teal)', fontSize: '2.5rem' }}>
         ✓
       </div>
       <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>Order Confirmed</h2>
@@ -49,11 +49,11 @@ function App() {
     <Router basename={import.meta.env.BASE_URL}>
       <div style={{ padding: '1.5rem 0 0 0', position: 'sticky', top: 0, zIndex: 100 }}>
         <header className="glass-header" style={{ margin: '0 auto', maxWidth: '1160px', borderRadius: 'var(--radius-pill)' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '70px', padding: '0 2rem' }}>
+          <div className="app-header-inner">
             <Link to="/" style={{ textDecoration: 'none', color: 'var(--text-primary)' }}>
               <h1 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 700, letterSpacing: '-0.5px' }}>AeroLogic Dynamics</h1>
             </Link>
-            <nav style={{ display: 'flex', gap: '2.5rem', alignItems: 'center', fontWeight: 500, fontSize: '0.95rem' }}>
+            <nav className="app-nav">
               <button 
                 onClick={() => setIsDarkMode(!isDarkMode)} 
                 style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem', color: 'var(--text-secondary)' }}
@@ -94,7 +94,7 @@ function App() {
       
       <footer style={{ background: 'var(--surface-color)', padding: '4rem 0 2rem', borderTop: '1px solid var(--border-color)' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '3rem', marginBottom: '3rem' }}>
+          <div className="footer-grid">
             <div>
               <h3 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>AeroLogic Dynamics</h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.6 }}>
