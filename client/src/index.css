@@ -202,6 +202,11 @@ img {
 .modal-layout {
   display: flex; gap: 2rem; position: relative;
 }
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 3rem;
+}
 
 @media (max-width: 768px) {
   .app-header-inner {
@@ -234,6 +239,10 @@ img {
   .modal-layout {
     flex-direction: column;
     overflow-y: auto;
+  }
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
   .container {
     padding: 0 1rem;

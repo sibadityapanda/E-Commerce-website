@@ -56,7 +56,7 @@ const ProductCatalog = () => {
       {/* Hero Section */}
       <section className="container" style={{ paddingTop: '6rem', paddingBottom: '4rem', textAlign: 'center' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h2 style={{ fontSize: 'clamp(3rem, 5vw, 4.5rem)', fontWeight: 800, marginBottom: '1.5rem', color: 'var(--text-primary)', lineHeight: 1.1 }}>
+          <h2 className="hero-title" style={{ fontWeight: 800, marginBottom: '1.5rem', color: 'var(--text-primary)', lineHeight: 1.1 }}>
             Engineering the Future of Technology.
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '1.25rem', marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem' }}>
@@ -120,7 +120,7 @@ const ProductCatalog = () => {
           </select>
         </div>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '3rem' }}>
+        <div className="product-grid">
           {(showAll ? filteredProducts : filteredProducts.slice(0, 6)).map((product) => (
             <div key={product._id} className="ag-card" style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
               {product.countInStock === 0 && (
@@ -129,7 +129,7 @@ const ProductCatalog = () => {
                 </div>
               )}
               
-              <div style={{ padding: '2.5rem 2.5rem 1rem', background: 'linear-gradient(to bottom, #ffffff, #fafafa)', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}
+              <div className="product-img-container" style={{ padding: '2.5rem 2.5rem 1rem', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}
                    onMouseOver={(e) => { const btn = e.currentTarget.querySelector('.quick-view-btn'); if(btn) btn.style.opacity = '1'; }}
                    onMouseOut={(e) => { const btn = e.currentTarget.querySelector('.quick-view-btn'); if(btn) btn.style.opacity = '0'; }}>
                 <img src={product.image?.startsWith('/') ? `${import.meta.env.BASE_URL}${product.image.slice(1)}` : product.image} alt={product.name} style={{ width: '100%', height: '220px', objectFit: 'contain', filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.1))' }} />
@@ -208,16 +208,15 @@ const ProductCatalog = () => {
           justifyContent: 'center', alignItems: 'center', padding: '1rem',
           backdropFilter: 'blur(4px)'
         }} onClick={() => setQuickViewProduct(null)}>
-          <div style={{
+          <div className="modal-layout" style={{
             background: 'var(--surface-color)', padding: '2rem', borderRadius: 'var(--radius-card)',
-            maxWidth: '800px', width: '100%', display: 'flex', gap: '2rem', position: 'relative',
-            maxHeight: '90vh', overflowY: 'auto'
+            maxWidth: '800px', width: '100%', maxHeight: '90vh'
           }} onClick={e => e.stopPropagation()}>
             <button onClick={() => setQuickViewProduct(null)} style={{
               position: 'absolute', top: '1rem', right: '1rem', background: 'transparent',
               border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-primary)'
             }}>×</button>
-            <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#f5f5f5', borderRadius: '1rem', padding: '2rem' }}>
+            <div className="modal-img-container" style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '1rem', padding: '2rem' }}>
               <img src={quickViewProduct.image?.startsWith('/') ? `${import.meta.env.BASE_URL}${quickViewProduct.image.slice(1)}` : quickViewProduct.image} alt={quickViewProduct.name} style={{ width: '100%', maxHeight: '300px', objectFit: 'contain' }} />
             </div>
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
