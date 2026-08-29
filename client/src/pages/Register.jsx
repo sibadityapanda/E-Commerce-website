@@ -28,7 +28,7 @@ const Register = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              style={{ width: '100%', padding: '0.75rem 1rem', borderRadius: '10px', border: '1px solid var(--border-color)', outline: 'none', fontFamily: 'var(--font-body)', fontSize: '1rem' }}
+              className="ag-input"
             />
           </div>
           <div style={{ textAlign: 'left' }}>
@@ -38,7 +38,7 @@ const Register = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              style={{ width: '100%', padding: '0.75rem 1rem', borderRadius: '10px', border: '1px solid var(--border-color)', outline: 'none', fontFamily: 'var(--font-body)', fontSize: '1rem' }}
+              className="ag-input"
             />
           </div>
           <div style={{ textAlign: 'left' }}>
@@ -48,7 +48,7 @@ const Register = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              style={{ width: '100%', padding: '0.75rem 1rem', borderRadius: '10px', border: '1px solid var(--border-color)', outline: 'none', fontFamily: 'var(--font-body)', fontSize: '1rem' }}
+              className="ag-input"
             />
           </div>
           
