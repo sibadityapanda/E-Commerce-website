@@ -69,7 +69,7 @@ const AdminDashboard = () => {
                   <td style={{ padding: '1rem', fontWeight: 500 }}>{p.name}</td>
                   <td style={{ padding: '1rem', fontWeight: 600 }}>${p.price.toFixed(2)}</td>
                   <td style={{ padding: '1rem' }}>
-                    <span style={{ background: p.countInStock > 0 ? '#e6f4ea' : '#fce8e8', color: p.countInStock > 0 ? '#1e8e3e' : '#ff4d4f', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 600 }}>
+                    <span className={`status-badge ${p.countInStock > 0 ? 'status-success' : 'status-error'}`}>
                       {p.countInStock}
                     </span>
                   </td>

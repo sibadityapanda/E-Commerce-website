@@ -20,7 +20,7 @@ const UserDashboard = () => {
     <div className="container" style={{ padding: '4rem 0' }}>
       <h2 style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>My Account</h2>
       
-      <div style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: '3rem', alignItems: 'start' }}>
+      <div className="dashboard-grid">
         {/* Sidebar */}
         <div className="ag-card" style={{ padding: '2rem' }}>
           <div style={{ width: '80px', height: '80px', background: 'var(--accent-teal)', borderRadius: '50%', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', fontWeight: 700, marginBottom: '1.5rem' }}>
@@ -60,13 +60,13 @@ const UserDashboard = () => {
                 <td style={{ padding: '1rem', fontWeight: 500 }}>#ORD-10492</td>
                 <td style={{ padding: '1rem', color: 'var(--text-secondary)' }}>Aug 21, 2026</td>
                 <td style={{ padding: '1rem', fontWeight: 600 }}>$599.99</td>
-                <td style={{ padding: '1rem' }}><span style={{ background: '#e6f4ea', color: '#1e8e3e', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 600 }}>Delivered</span></td>
+                <td style={{ padding: '1rem' }}><span className="status-badge status-success">Delivered</span></td>
               </tr>
               <tr>
                 <td style={{ padding: '1rem', fontWeight: 500 }}>#ORD-10384</td>
                 <td style={{ padding: '1rem', color: 'var(--text-secondary)' }}>Aug 15, 2026</td>
                 <td style={{ padding: '1rem', fontWeight: 600 }}>$1,299.99</td>
-                <td style={{ padding: '1rem' }}><span style={{ background: '#e6f4ea', color: '#1e8e3e', padding: '0.25rem 0.75rem', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 600 }}>Delivered</span></td>
+                <td style={{ padding: '1rem' }}><span className="status-badge status-success">Delivered</span></td>
               </tr>
             </tbody>
           </table>
