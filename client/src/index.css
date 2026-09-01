@@ -289,3 +289,5 @@ img {
 @media (max-width: 768px) { .ag-card:active { transform: scale(0.98); } }
 
 @media (max-width: 768px) { .ag-input { padding: 0.85rem 1rem; font-size: 16px; } }
+
+@media (max-width: 768px) { .modal-img-container { padding: 1rem; border-radius: 12px; } }
