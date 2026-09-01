@@ -281,3 +281,5 @@ img {
   }
 }
 @media (max-width: 768px) { .btn-primary { padding: 0.75rem 1.5rem; font-size: 0.9rem; } }
+
+@media (max-width: 768px) { h2 { font-size: 1.75rem; } h3 { font-size: 1.5rem; } }
