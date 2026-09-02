@@ -5,6 +5,7 @@ import { protect } from '../middleware/authMiddleware.js';
 const router = express.Router();
 
 // @route   GET /api/products
+// @desc    Fetch all products
 router.get('/', async (req, res) => {
   try {
     const products = await Product.find({});
@@ -14,7 +15,8 @@ router.get('/', async (req, res) => {
   }
 });
 
-// @route   GET /api/products/:id
+// @route   GET /api/products
+// @desc    Fetch all products/:id
 router.get('/:id', async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
