@@ -22,7 +22,8 @@ const productSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      default: 'General'
+      default: 'General',
+      index: true
     },
     price: {
       min: [0, 'Price must be positive'],
