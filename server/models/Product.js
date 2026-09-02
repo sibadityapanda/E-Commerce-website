@@ -25,6 +25,7 @@ const productSchema = new mongoose.Schema(
       default: 'General'
     },
     price: {
+      min: [0, 'Price must be positive'],
       type: Number,
       required: true,
     },
