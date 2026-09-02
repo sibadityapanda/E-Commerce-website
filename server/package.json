@@ -2,6 +2,7 @@
   "name": "ecommerce-server",
   "version": "1.0.0",
   "description": "E-commerce backend",
+  "author": "AeroLogic",
   "main": "server.js",
   "type": "module",
   "scripts": {
