@@ -5,6 +5,7 @@ import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
+// Generate JWT Token with 30d expiry
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET || 'fallback_secret', {
     expiresIn: '30d',
