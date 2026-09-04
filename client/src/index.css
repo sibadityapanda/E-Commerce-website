@@ -305,3 +305,5 @@ img {
 @media (max-width: 992px) { .dashboard-grid { grid-template-columns: 1fr !important; } }
 
 @media (max-width: 480px) { .cart-item-layout { padding: 1rem; gap: 1rem; flex-wrap: wrap; } }
+
+@media (max-width: 768px) { .ag-card { padding: 1.5rem !important; } }
