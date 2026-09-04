@@ -301,3 +301,5 @@ img {
 @media (max-width: 768px) { .app-nav a { padding: 0.5rem; display: inline-block; } }
 
 @media (max-width: 992px) { .cart-grid { grid-template-columns: 1fr !important; } }
+
+@media (max-width: 992px) { .dashboard-grid { grid-template-columns: 1fr !important; } }
